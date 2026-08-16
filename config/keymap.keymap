@@ -9,7 +9,7 @@
 // レイヤー切り替え（&lt）全体の長押し判定時間を変更
 // ==========================================
 &lt {
-    tapping-term-ms = <110>; // 0.11秒に変更
+    tapping-term-ms = <135>; // 0.135秒に変更
 };
 // ==========================================
 
@@ -19,7 +19,7 @@
             compatible = "zmk,behavior-hold-tap";
             label = "HT_MB4";
             #binding-cells = <2>;
-            tapping-term-ms = <110>; // 0.11秒に変更
+            tapping-term-ms = <135>; // 0.135秒に変更
             flavor = "tap-preferred";
             bindings = <&kp>, <&mkp>;
         };
@@ -28,7 +28,7 @@
             compatible = "zmk,behavior-hold-tap";
             label = "HT_SPACE";
             #binding-cells = <2>;
-            tapping-term-ms = <110>; // 0.11秒に変更
+            tapping-term-ms = <135>; // 0.135秒に変更
             flavor = "tap-preferred";
             bindings = <&kp>, <&kp>;
         };
@@ -37,7 +37,7 @@
             compatible = "zmk,behavior-hold-tap";
             label = "HT_MB5";
             #binding-cells = <2>;
-            tapping-term-ms = <110>; // 0.11秒に変更
+            tapping-term-ms = <135>; // 0.135秒に変更
             flavor = "tap-preferred";
             bindings = <&kp>, <&mkp>;
         };
