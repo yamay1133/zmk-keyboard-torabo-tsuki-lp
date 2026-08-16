@@ -9,7 +9,7 @@
 // レイヤー切り替え（&lt）全体の長押し判定時間を変更
 // ==========================================
 &lt {
-    tapping-term-ms = <135>; // 0.135秒に変更
+    tapping-term-ms = <140>; // 0.14秒に変更
 };
 // ==========================================
 
@@ -19,7 +19,7 @@
             compatible = "zmk,behavior-hold-tap";
             label = "HT_MB4";
             #binding-cells = <2>;
-            tapping-term-ms = <135>; // 0.135秒に変更
+            tapping-term-ms = <140>; // 0.14秒に変更
             flavor = "tap-preferred";
             bindings = <&kp>, <&mkp>;
         };
@@ -28,7 +28,7 @@
             compatible = "zmk,behavior-hold-tap";
             label = "HT_SPACE";
             #binding-cells = <2>;
-            tapping-term-ms = <135>; // 0.135秒に変更
+            tapping-term-ms = <140>; // 0.14秒に変更
             flavor = "tap-preferred";
             bindings = <&kp>, <&kp>;
         };
@@ -37,7 +37,7 @@
             compatible = "zmk,behavior-hold-tap";
             label = "HT_MB5";
             #binding-cells = <2>;
-            tapping-term-ms = <135>; // 0.135秒に変更
+            tapping-term-ms = <140>; // 0.14秒に変更
             flavor = "tap-preferred";
             bindings = <&kp>, <&mkp>;
         };
@@ -70,8 +70,8 @@
 &none  &none         &none         &none      &none              &none                                      &none        &none  &none      &none                 &none                   &none
 &none  &kp Q         &kp W         &kp E      &kp R              &kp T                                      &kp Y        &kp U  &kp I      &kp O                 &kp P                   &none
 &none  &kp A         &kp S         &kp D      &kp F              &kp G            &none     &none           &kp H        &kp J  &kp K      &kp L                 &lt 1 MINUS             &none
-&none  &kp Z         &kp X         &kp C      &kp V              &kp B            &none     &none           &kp N        &kp M  &kp SLASH  &kp NON_US_BACKSLASH  &lt 3 NON_US_BACKSLASH  &none
-&none  &kp LEFT_WIN  &kp LEFT_ALT  &kp LANG1  &ht_mb4 LCTRL MB4  &ht_spc LS(LCTRL) SPACE  &ht_mb5 LSHIFT MB5  &lt 4 BACKSPACE  &lt 2 ENTER  &none  &none      &none                 &lt 5 LCTRL             &none
+&none  &kp Z         &kp X         &kp C      &kp V              &kp B            &none     &none           &kp N        &kp M  &kp SLASH  &kp INT1              &lt 3 INT3              &none
+&none  &kp LEFT_WIN  &kp LEFT_ALT  &kp LANG1  &ht_mb4 LCTRL MB4  &ht_spc LS(LCTRL) SPACE  &ht_mb5 LSHIFT MB5  &lt 4 BACKSPACE  &lt 2 ENTER  &none  &none      &none                 &lt 5 EQUAL             &none
             >;
         };
 
