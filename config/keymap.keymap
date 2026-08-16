@@ -4,6 +4,45 @@
 #include <dt-bindings/zmk/pointing.h>
 
 / {
+    behaviors {
+        ht_mb4: hold_tap_mb4 {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HT_MB4";
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            flavor = "tap-preferred";
+            bindings = <&kp>, <&mkp>;
+        };
+
+        ht_spc: hold_tap_space {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HT_SPACE";
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            flavor = "tap-preferred";
+            bindings = <&kp>, <&kp>;
+        };
+
+        ht_mb5: hold_tap_mb5 {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HT_MB5";
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            flavor = "tap-preferred";
+            bindings = <&kp>, <&mkp>;
+        };
+    };
+
+    trackball_listener {
+        compatible = "zmk,input-behavior-listener";
+        device = <&trackball>;
+        layers = <0>;
+        
+        evt-type = <INPUT_EV_REL>;
+        x-input-code = <INPUT_REL_X>;
+        y-input-code = <INPUT_REL_Y>;
+    };
+
     combos {
         compatible = "zmk,combos";
 
@@ -28,11 +67,11 @@
 
         layer_0 {
             bindings = <
-&none  &none         &none         &none     &none     &none                                 &none        &none  &none      &none                 &none                   &none
-&none  &kp Q         &kp W         &kp E     &kp R     &kp T                                 &kp Y        &kp U  &kp I      &kp O                 &kp P                   &none
-&none  &kp A         &kp S         &kp D     &kp F     &kp G      &none     &none            &kp H        &kp J  &kp K      &kp L                 &lt 1 MINUS             &none
-&none  &kp Z         &kp X         &kp C     &kp V     &kp B      &none     &none            &kp N        &kp M  &kp SLASH  &kp NON_US_BACKSLASH  &lt 3 NON_US_BACKSLASH  &none
-&none  &kp LEFT_WIN  &kp LEFT_ALT  &kp INT4  &mkp MB4  &kp SPACE  &mkp MB5  &lt 4 BACKSPACE  &lt 2 ENTER  &kp A  &kp A      &kp A                 &lt 5 LCTRL             &none
+&none  &none         &none         &none     &none              &none                                      &none        &none  &none      &none                 &none                   &none
+&none  &kp Q         &kp W         &kp E     &kp R              &kp T                                      &kp Y        &kp U  &kp I      &kp O                 &kp P                   &none
+&none  &kp A         &kp S         &kp D     &kp F              &kp G            &none     &none           &kp H        &kp J  &kp K      &kp L                 &lt 1 MINUS             &none
+&none  &kp Z         &kp X         &kp C     &kp V              &kp B            &none     &none           &kp N        &kp M  &kp SLASH  &kp NON_US_BACKSLASH  &lt 3 NON_US_BACKSLASH  &none
+&none  &kp LEFT_WIN  &kp LEFT_ALT  &kp INT4  &ht_mb4 LCTRL MB4  &ht_spc LS(LCTRL) SPACE  &ht_mb5 LSHIFT MB5  &lt 4 BACKSPACE  &lt 2 ENTER  &none  &none      &none                 &lt 5 LCTRL             &none
             >;
         };
 
