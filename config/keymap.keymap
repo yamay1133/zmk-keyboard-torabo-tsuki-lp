@@ -5,13 +5,21 @@
 #include <input/processors.dtsi>
 #include <dt-bindings/zmk/input_transform.h>
 
+// ==========================================
+// レイヤー切り替え（&lt）全体の長押し判定時間を変更
+// ==========================================
+&lt {
+    tapping-term-ms = <150>; // ★ここを調整（デフォルトは200）
+};
+// ==========================================
+
 / {
     behaviors {
         ht_mb4: hold_tap_mb4 {
             compatible = "zmk,behavior-hold-tap";
             label = "HT_MB4";
             #binding-cells = <2>;
-            tapping-term-ms = <200>;
+            tapping-term-ms = <150>; // MB4専用の判定時間
             flavor = "tap-preferred";
             bindings = <&kp>, <&mkp>;
         };
@@ -20,7 +28,7 @@
             compatible = "zmk,behavior-hold-tap";
             label = "HT_SPACE";
             #binding-cells = <2>;
-            tapping-term-ms = <200>;
+            tapping-term-ms = <150>; // Space専用の判定時間
             flavor = "tap-preferred";
             bindings = <&kp>, <&kp>;
         };
@@ -29,7 +37,7 @@
             compatible = "zmk,behavior-hold-tap";
             label = "HT_MB5";
             #binding-cells = <2>;
-            tapping-term-ms = <200>;
+            tapping-term-ms = <150>; // MB5専用の判定時間
             flavor = "tap-preferred";
             bindings = <&kp>, <&mkp>;
         };
@@ -129,7 +137,6 @@
     scroller {
         layers = <0>;
         input-processors = <
-            &zip_xy_transform (INPUT_TRANSFORM_X_INVERT | INPUT_TRANSFORM_Y_INVERT)
             &zip_xy_to_scroll_mapper
         >;
     };
