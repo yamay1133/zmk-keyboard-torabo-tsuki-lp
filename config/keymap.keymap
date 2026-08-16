@@ -51,6 +51,13 @@
             bindings = <&kp LEFT_WIN &kp LEFT_CONTROL &kp L>;
             label = "SLEEP";
         };
+        // 追加: 確実なShift + Tab用マクロ
+        shift_tab: shift_tab {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_press &kp LSHIFT>, <&macro_tap &kp TAB>, <&macro_release &kp LSHIFT>;
+            label = "SHIFT_TAB";
+        };
     };
 
     keymap {
@@ -67,9 +74,10 @@
         };
 
         layer_1 {
+            // 修正: &kp LS(TAB) を &shift_tab に変更しました
             bindings = <
 &trans  &trans  &trans  &trans    &trans     &trans                                &trans          &trans          &trans           &trans  &trans  &trans
-&trans  &trans  &trans  &trans    &trans     &trans                                &msc SCRL_UP    &kp TAB         &kp LS(TAB)      &trans  &trans  &trans
+&trans  &trans  &trans  &trans    &trans     &trans                                &msc SCRL_UP    &kp TAB         &shift_tab       &trans  &trans  &trans
 &trans  &trans  &trans  &trans    &trans     &trans     &trans      &trans         &mkp MB3        &mkp MB1        &mkp MB2         &none   &trans  &trans
 &trans  &trans  &trans  &trans    &trans     &trans     &trans      &trans         &msc SCRL_DOWN  &msc SCRL_LEFT  &msc SCRL_RIGHT  &trans  &trans  &trans
 &trans  &trans  &trans  &kp INT5  &kp LCTRL  &kp SPACE  &kp LSHIFT  &kp BACKSPACE  &kp ENTER       &trans          &trans           &trans  &trans  &trans
@@ -118,11 +126,13 @@
     };
 };
 
-// ==========================================
-// 判明した正しいリスナー名（pointing_listener）を使用
-// レイヤー0の時だけ、トラックボール移動をスクロールに変換
-// ==========================================
 &pointing_listener {
+    // 修正: レイヤー1〜5の時は「等倍（変化なし）」にしてマウスのままにする
+    mouse_mode {
+        layers = <1 2 3 4 5>;
+        input-processors = <&zip_xy_scaler 1 1>;
+    };
+    // レイヤー0の時（上の条件に当てはまらない時）だけスクロールにする
     scroller {
         layers = <0>;
         input-processors = <&zip_xy_to_scroll_mapper>;
