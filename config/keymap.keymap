@@ -3,7 +3,7 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/pointing.h>
 #include <input/processors.dtsi>
-#include <dt-bindings/zmk/input_transform.h> // 追加: カーソルの向きを反転させるための設定ファイル
+#include <dt-bindings/zmk/input_transform.h>
 
 / {
     behaviors {
@@ -52,12 +52,6 @@
             bindings = <&kp LEFT_WIN &kp LEFT_CONTROL &kp L>;
             label = "SLEEP";
         };
-        shift_tab: shift_tab {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&macro_press &kp LSHIFT>, <&macro_tap &kp TAB>, <&macro_release &kp LSHIFT>;
-            label = "SHIFT_TAB";
-        };
     };
 
     keymap {
@@ -65,21 +59,21 @@
 
         layer_0 {
             bindings = <
-&none  &none         &none         &none     &none              &none                                      &none        &none  &none      &none                 &none                   &none
-&none  &kp Q         &kp W         &kp E     &kp R              &kp T                                      &kp Y        &kp U  &kp I      &kp O                 &kp P                   &none
-&none  &kp A         &kp S         &kp D     &kp F              &kp G            &none     &none           &kp H        &kp J  &kp K      &kp L                 &lt 1 MINUS             &none
-&none  &kp Z         &kp X         &kp C     &kp V              &kp B            &none     &none           &kp N        &kp M  &kp SLASH  &kp NON_US_BACKSLASH  &lt 3 NON_US_BACKSLASH  &none
-&none  &kp LEFT_WIN  &kp LEFT_ALT  &kp INT4  &ht_mb4 LCTRL MB4  &ht_spc LS(LCTRL) SPACE  &ht_mb5 LSHIFT MB5  &lt 4 BACKSPACE  &lt 2 ENTER  &none  &none      &none                 &lt 5 LCTRL             &none
+&none  &none         &none         &none      &none              &none                                      &none        &none  &none      &none                 &none                   &none
+&none  &kp Q         &kp W         &kp E      &kp R              &kp T                                      &kp Y        &kp U  &kp I      &kp O                 &kp P                   &none
+&none  &kp A         &kp S         &kp D      &kp F              &kp G            &none     &none           &kp H        &kp J  &kp K      &kp L                 &lt 1 MINUS             &none
+&none  &kp Z         &kp X         &kp C      &kp V              &kp B            &none     &none           &kp N        &kp M  &kp SLASH  &kp NON_US_BACKSLASH  &lt 3 NON_US_BACKSLASH  &none
+&none  &kp LEFT_WIN  &kp LEFT_ALT  &kp LANG1  &ht_mb4 LCTRL MB4  &ht_spc LS(LCTRL) SPACE  &ht_mb5 LSHIFT MB5  &lt 4 BACKSPACE  &lt 2 ENTER  &none  &none      &none                 &lt 5 LCTRL             &none
             >;
         };
 
         layer_1 {
             bindings = <
-&trans  &trans  &trans  &trans    &trans     &trans                                &trans          &trans          &trans           &trans  &trans  &trans
-&trans  &trans  &trans  &trans    &trans     &trans                                &msc SCRL_UP    &kp TAB         &shift_tab       &trans  &trans  &trans
-&trans  &trans  &trans  &trans    &trans     &trans     &trans      &trans         &mkp MB3        &mkp MB1        &mkp MB2         &none   &trans  &trans
-&trans  &trans  &trans  &trans    &trans     &trans     &trans      &trans         &msc SCRL_DOWN  &msc SCRL_LEFT  &msc SCRL_RIGHT  &trans  &trans  &trans
-&trans  &trans  &trans  &kp INT5  &kp LCTRL  &kp SPACE  &kp LSHIFT  &kp BACKSPACE  &kp ENTER       &trans          &trans           &trans  &trans  &trans
+&trans  &trans  &trans  &trans     &trans     &trans                                &trans          &trans          &trans           &trans  &trans  &trans
+&trans  &trans  &trans  &trans     &trans     &trans                                &msc SCRL_UP    &kp TAB         &kp LS(TAB)      &trans  &trans  &trans
+&trans  &trans  &trans  &trans     &trans     &trans     &trans      &trans         &mkp MB3        &mkp MB1        &mkp MB2         &none   &trans  &trans
+&trans  &trans  &trans  &trans     &trans     &trans     &trans      &trans         &msc SCRL_DOWN  &msc SCRL_LEFT  &msc SCRL_RIGHT  &trans  &trans  &trans
+&trans  &trans  &trans  &kp LANG2  &kp LCTRL  &kp SPACE  &kp LSHIFT  &kp BACKSPACE  &kp ENTER       &trans          &trans           &trans  &trans  &trans
             >;
         };
 
@@ -95,21 +89,21 @@
 
         layer_3 {
             bindings = <
-&trans  &trans    &trans    &trans  &trans  &trans                  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &kp INT5  &kp INT4  &kp N7  &kp N8  &kp N9                  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans    &trans    &kp N4  &kp N5  &kp N6  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans    &trans    &kp N1  &kp N2  &kp N3  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans    &trans    &kp N0  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans     &trans     &trans  &trans  &trans                  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &kp LANG2  &kp LANG1  &kp N7  &kp N8  &kp N9                  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans     &trans     &kp N4  &kp N5  &kp N6  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans     &trans     &kp N1  &kp N2  &kp N3  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans     &trans     &kp N0  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
             >;
         };
 
         layer_4 {
             bindings = <
-&trans  &trans    &trans    &trans               &trans                    &trans                                     &trans            &trans             &trans              &trans                &trans         &trans
-&trans  &kp INT5  &kp INT4  &kp LS(SQT)          &kp LS(LEFT_PARENTHESIS)  &kp LS(RIGHT_PARENTHESIS)                  &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &kp LS(LEFT_BRACE)  &kp LS(RIGHT_BRACE)   &kp AT_SIGN    &trans
-&trans  &trans    &trans    &kp LS(DOLLAR)       &kp LS(PERCENT)           &kp AMPERSAND              &trans  &trans  &kp COMMA         &kp PERIOD         &kp LS(LESS_THAN)   &kp LS(GREATER_THAN)  &kp LS(GRAVE)  &trans
-&trans  &trans    &trans    &kp LS(EXCLAMATION)  &kp LS(DOUBLE_QUOTES)     &kp HASH                   &trans  &trans  &kp SEMI          &kp COLON          &kp PLUS            &kp LS(ASTERISK)      &trans         &trans
-&trans  &trans    &trans    &kp ESC              &trans                    &trans                     &trans  &trans  &trans            &trans             &trans              &trans                &trans         &trans
+&trans  &trans     &trans     &trans               &trans                    &trans                                     &trans            &trans             &trans              &trans                &trans         &trans
+&trans  &kp LANG2  &kp LANG1  &kp LS(SQT)          &kp LS(LEFT_PARENTHESIS)  &kp LS(RIGHT_PARENTHESIS)                  &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &kp LS(LEFT_BRACE)  &kp LS(RIGHT_BRACE)   &kp AT_SIGN    &trans
+&trans  &trans     &trans     &kp LS(DOLLAR)       &kp LS(PERCENT)           &kp AMPERSAND              &trans  &trans  &kp COMMA         &kp PERIOD         &kp LS(LESS_THAN)   &kp LS(GREATER_THAN)  &kp LS(GRAVE)  &trans
+&trans  &trans     &trans     &kp LS(EXCLAMATION)  &kp LS(DOUBLE_QUOTES)     &kp HASH                   &trans  &trans  &kp SEMI          &kp COLON          &kp PLUS            &kp LS(ASTERISK)      &trans         &trans
+&trans  &trans     &trans     &kp ESC              &trans                    &trans                     &trans  &trans  &trans            &trans             &trans              &trans                &trans         &trans
             >;
         };
 
@@ -128,14 +122,12 @@
 &pointing_listener {
     mouse_mode {
         layers = <1 2 3 4 5>;
-        // 修正: マウス操作時に左右（X）と上下（Y）を反転させて正しい向きに補正
         input-processors = <
             &zip_xy_transform (INPUT_TRANSFORM_X_INVERT | INPUT_TRANSFORM_Y_INVERT)
         >;
     };
     scroller {
         layers = <0>;
-        // 修正: スクロール時も向きを補正してからスクロール信号に変換
         input-processors = <
             &zip_xy_transform (INPUT_TRANSFORM_X_INVERT | INPUT_TRANSFORM_Y_INVERT)
             &zip_xy_to_scroll_mapper
