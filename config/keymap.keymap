@@ -3,6 +3,7 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/pointing.h>
 #include <input/processors.dtsi>
+#include <dt-bindings/zmk/input_transform.h> // 追加: カーソルの向きを反転させるための設定ファイル
 
 / {
     behaviors {
@@ -51,7 +52,6 @@
             bindings = <&kp LEFT_WIN &kp LEFT_CONTROL &kp L>;
             label = "SLEEP";
         };
-        // 追加: 確実なShift + Tab用マクロ
         shift_tab: shift_tab {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
@@ -74,7 +74,6 @@
         };
 
         layer_1 {
-            // 修正: &kp LS(TAB) を &shift_tab に変更しました
             bindings = <
 &trans  &trans  &trans  &trans    &trans     &trans                                &trans          &trans          &trans           &trans  &trans  &trans
 &trans  &trans  &trans  &trans    &trans     &trans                                &msc SCRL_UP    &kp TAB         &shift_tab       &trans  &trans  &trans
@@ -127,14 +126,19 @@
 };
 
 &pointing_listener {
-    // 修正: レイヤー1〜5の時は「等倍（変化なし）」にしてマウスのままにする
     mouse_mode {
         layers = <1 2 3 4 5>;
-        input-processors = <&zip_xy_scaler 1 1>;
+        // 修正: マウス操作時に左右（X）と上下（Y）を反転させて正しい向きに補正
+        input-processors = <
+            &zip_xy_transform (INPUT_TRANSFORM_X_INVERT | INPUT_TRANSFORM_Y_INVERT)
+        >;
     };
-    // レイヤー0の時（上の条件に当てはまらない時）だけスクロールにする
     scroller {
         layers = <0>;
-        input-processors = <&zip_xy_to_scroll_mapper>;
+        // 修正: スクロール時も向きを補正してからスクロール信号に変換
+        input-processors = <
+            &zip_xy_transform (INPUT_TRANSFORM_X_INVERT | INPUT_TRANSFORM_Y_INVERT)
+            &zip_xy_to_scroll_mapper
+        >;
     };
 };
