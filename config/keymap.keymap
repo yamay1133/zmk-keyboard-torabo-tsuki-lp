@@ -2,7 +2,6 @@
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/pointing.h>
-#include <input/processors.dtsi>
 
 / {
     behaviors {
@@ -115,15 +114,5 @@
 &trans  &trans   &trans   &kp F10  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
             >;
         };
-    };
-};
-
-// ==========================================
-// 追加: スクロールレイヤー設定 (ZMK v0.3用)
-// ==========================================
-&trackball_listener {
-    scroller {
-        layers = <0>; // レイヤー0の時だけ有効
-        input-processors = <&zip_xy_to_scroll_mapper>; // カーソル移動をスクロールに変換
     };
 };
