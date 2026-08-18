@@ -4,17 +4,26 @@
 #include <dt-bindings/zmk/pointing.h>
 #include <input/processors.dtsi>
 #include <dt-bindings/zmk/input_transform.h>
+#include <zephyr/dt-bindings/input/input-event-codes.h>
 
 // ==========================================
 // レイヤー切り替え（&lt）全体の設定
 // ==========================================
 &lt {
-    tapping-term-ms = <140>; // 長押しの判定時間
+    tapping-term-ms = <135>; // 長押しの判定時間
     quick-tap-ms = <195>;    // トン・トン（2回目長押し）でタップ側のキーを押しっぱなしにする
 };
+
 // ==========================================
 
 / {
+    zip_x_scaler: zip_x_scaler {
+        compatible = "zmk,input-processor-scaler";
+        #input-processor-cells = <2>;
+        type = <INPUT_EV_REL>;
+        codes = <INPUT_REL_X>;
+    };
+
     behaviors {
         ht_mb4: hold_tap_mb4 {
             compatible = "zmk,behavior-hold-tap";
@@ -136,11 +145,14 @@
         layers = <1 2 3 4 5>;
         input-processors = <
             &zip_xy_transform (INPUT_TRANSFORM_X_INVERT | INPUT_TRANSFORM_Y_INVERT)
+            &zip_xy_scaler 70 100
         >;
     };
+
     scroller {
         layers = <0>;
         input-processors = <
+            &zip_x_scaler 0 1
             &zip_xy_to_scroll_mapper
         >;
     };
